@@ -156,16 +156,14 @@ def game_loop():
         if len(fireballs) < difficulty:
             fireballs.append(Fireball())
 
-        fireball_index = 0
-        for fireball in fireballs:
+        for index, fireball in enumerate(fireballs):
             fireball.update()
 
             if fireball.rectangle().colliderect(player.rectangle()):
                 death_screen(score)
 
             if fireball.has_reached_limit:
-                fireballs.pop(fireball_index)
-                fireball_index -= 1
+                fireballs.pop(index)
                 score += 1
                 difficulty += 0.1
                 player.speed_bonus += 0.01
