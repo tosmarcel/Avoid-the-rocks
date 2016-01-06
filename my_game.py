@@ -141,20 +141,26 @@ def game_loop():
             if event.type == pygame.QUIT:
                 quit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     player.x_speed = 2
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                     player.x_speed = -2
-                if event.key == pygame.K_DOWN:
+                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     player.y_speed = 2
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_UP or event.key == pygame.K_w:
                     player.y_speed = -2
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
                     player.x_speed = 0
+                if event.key == pygame.K_d or event.key == pygame.K_a:
+                    player.x_speed = 0
+                
                 if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                     player.y_speed = 0
+                if event.key == pygame.K_w or event.key == pygame.K_s:
+                    player.y_speed = 0
+
 
         if not matrix:
             gameDisplay.fill((255,255,255))
