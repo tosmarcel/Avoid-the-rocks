@@ -1,6 +1,13 @@
 import pygame
 import random
 import time
+import sys
+
+matrix = False
+
+if len(sys.argv) > 1:
+    if sys.argv[1].lower() == "matrix":
+        matrix = True
 
 pygame.init()
 
@@ -149,7 +156,8 @@ def game_loop():
                 if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                     player.y_speed = 0
 
-        gameDisplay.fill((255,255,255))
+        if not matrix:
+            gameDisplay.fill((255,255,255))
 
         player.bound()
         player.update()
