@@ -8,6 +8,7 @@ display_width = 800
 display_height = 600
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))
+pygame.display.set_caption('Avoid the rocks!')
 clock = pygame.time.Clock()
 playerImg = pygame.image.load("player.png")
 fireballImg = pygame.image.load("fireball.png")
@@ -187,11 +188,26 @@ def main_screen():
 def death_screen(score):
     gameDisplay.fill((0,0,0))
     text = pygame.font.Font('freesansbold.ttf', 60)
-    message = "U DEAD BRUH! Score: " + str(score)
-    text_on_screen = text.render(message, True, (255, 255, 255))
-    text_rect = text_on_screen.get_rect()
-    text_rect.center = ((display_width/2),(display_height/2))
-    gameDisplay.blit(text_on_screen, text_rect)
+    messages = ['Pls, leave...',
+                'Stop Losing!',
+                'Is it over yet?',
+                'U dead bruh!',
+                'Is that all?',
+                'Try harder...',
+                'Pls, stop, it hurts!']
+    message = messages[random.randint(0,(len(messages)-1))]
+    message_on_screen = text.render(message, True, (255, 255, 255))
+    score_message = "Score: {}".format(score)
+    score_on_screen = text.render(score_message, True, (255, 255, 255))
+
+    message_rect = message_on_screen.get_rect()
+    message_rect.center = ((display_width/2),(display_height/2 + 40))
+    gameDisplay.blit(message_on_screen, message_rect)
+
+    score_rect = score_on_screen.get_rect()
+    score_rect.center = ((display_width/2), (display_height/2 - 40))
+    gameDisplay.blit(score_on_screen, score_rect)
+
     pygame.display.update()
     time.sleep(2)
     main_screen()
