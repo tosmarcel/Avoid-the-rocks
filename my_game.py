@@ -184,8 +184,19 @@ def game_loop():
 
 def main_screen():
     gameDisplay.fill((0,0,0))
+    messages = ["Let's Play!",
+                "Ready, set, don't...",
+                "Ready?",
+                "Ready to lose?",
+                "Oh, not you again...",
+                "Watch out!",
+                "Don't drop the soap!",
+                "Warning: Rage Material!",
+                "Future Score: -100!",
+                "It's over 9000 losses!"]
+    message = messages[random.randint(0, len(messages) - 1)]
     text = pygame.font.Font('freesansbold.ttf', 60)
-    text_on_screen = text.render("LET'S PLAY!", True, (255, 255, 255))
+    text_on_screen = text.render(message, True, (255, 255, 255))
     text_rect = text_on_screen.get_rect()
     text_rect.center = ((display_width/2),(display_height/2))
     gameDisplay.blit(text_on_screen, text_rect)
