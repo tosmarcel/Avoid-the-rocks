@@ -11,14 +11,15 @@ if len(sys.argv) > 1:
 
 pygame.init()
 
-display_width = 800
-display_height = 600
+display_width = 1000
+display_height = 1000
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Avoid the rocks!')
 clock = pygame.time.Clock()
 playerImg = pygame.image.load("player.png")
 fireballImg = pygame.image.load("fireball.png")
+
 
 class Player(object):
     x = 0
@@ -52,7 +53,7 @@ class Player(object):
         if self.x <= 0:
             self.x_speed = self.x_speed * -1
     def right_bound(self):
-        if self.x > display_width - self.width:
+        if self.x >= display_width - self.width:
             self.x_speed = self.x_speed * -1
     def top_bound(self):
         if self.y <= 0:
@@ -130,8 +131,10 @@ def game_loop():
     fireballs = []
     difficulty = 1.0
 
+    background_color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
+
     score = 0
-    gameDisplay.fill((255,255,255))
+    gameDisplay.fill(background_color)
     player.update()
     pygame.display.update()
 
@@ -163,13 +166,17 @@ def game_loop():
 
 
         if not matrix:
-            gameDisplay.fill((255,255,255))
+            gameDisplay.fill(background_color)
 
         player.bound()
         player.update()
 
         if len(fireballs) < difficulty:
             fireballs.append(Fireball())
+
+        if difficulty/3.0 == 0.0:
+            background_color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
+		
 
         for index, fireball in enumerate(fireballs):
             fireball.update()
