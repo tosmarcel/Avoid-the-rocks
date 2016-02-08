@@ -3,12 +3,6 @@ import random
 import time
 import sys
 
-matrix = False
-
-if len(sys.argv) > 1:
-    if sys.argv[1].lower() == "matrix":
-        matrix = True
-
 pygame.init()
 
 display_width = 800
@@ -162,8 +156,7 @@ def game_loop():
                     player.y_speed = 0
 
 
-        if not matrix:
-            gameDisplay.fill((255,255,255))
+        gameDisplay.fill((255,255,255))
 
         player.bound()
         player.update()
