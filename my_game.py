@@ -14,6 +14,8 @@ clock = pygame.time.Clock()
 playerImg = pygame.image.load("player.png")
 fireballImg = pygame.image.load("fireball.png")
 
+display_color = (255, 255, 255)
+
 class Player(object):
     x = 0
     y = 0
@@ -125,9 +127,16 @@ def game_loop():
     difficulty = 1.0
 
     score = 0
-    gameDisplay.fill((255,255,255))
+
+    global display_color
+    gameDisplay.fill(display_color)
+
     player.update()
     pygame.display.update()
+
+    base_time = time.time()
+    current_time = time.time()
+    elapsed_time = 0
 
     alive = True
     while alive:
@@ -156,7 +165,13 @@ def game_loop():
                     player.y_speed = 0
 
 
-        gameDisplay.fill((255,255,255))
+        current_time = time.time()
+        elapsed_time = current_time - base_time
+        if elapsed_time >= 1:
+            display_color = random_color()
+            base_time = time.time()
+
+        gameDisplay.fill(display_color)
 
         player.bound()
         player.update()
@@ -177,6 +192,7 @@ def game_loop():
                 player.speed_bonus += 0.01
                 print score
                 print player.speed_bonus
+
         pygame.display.update()
         clock.tick(50)
 
@@ -229,5 +245,10 @@ def death_screen(score):
     pygame.display.update()
     time.sleep(2)
     main_screen()
+
+
+def random_color():
+    return (random.randint(0, 255),random.randint(0, 255),
+            random.randint(0, 255))
 
 main_screen()
