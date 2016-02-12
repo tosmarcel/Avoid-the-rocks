@@ -5,8 +5,8 @@ import sys
 
 pygame.init()
 
-display_width = 800
-display_height = 600
+display_width = 1366
+display_height = 768
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Avoid the rocks!')
@@ -167,7 +167,7 @@ def game_loop():
 
         current_time = time.time()
         elapsed_time = current_time - base_time
-        if elapsed_time >= 1:
+        if elapsed_time >= (2 - difficulty/10):
             display_color = random_color()
             base_time = time.time()
 
