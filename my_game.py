@@ -46,15 +46,19 @@ class Player(object):
 
     def left_bound(self):
         if self.x <= 0:
+            self.x = 0;
             self.x_speed = self.x_speed * -1
     def right_bound(self):
         if self.x > display_width - self.width:
+            self.x = display_width - self.width
             self.x_speed = self.x_speed * -1
     def top_bound(self):
         if self.y <= 0:
+            self.y = 0
             self.y_speed = self.y_speed * -1
     def bottom_bound(self):
         if self.y >= display_height - self.height:
+            self.y = display_height - self.height
             self.y_speed = self.y_speed * -1
 
     def bound(self):
